@@ -18,9 +18,11 @@ function onFormSubmit(event) {
     alert('Fill please all fields');
     return;
   }
-  localStorage.removeItem(FEEDBACK_STORAGE_KEY);
   console.log(formData);
+  localStorage.removeItem(FEEDBACK_STORAGE_KEY);
   event.currentTarget.reset();
+  formData.email = '';
+  formData.message = '';
 }
 function onFormInput(event) {
   formData[event.target.name] = event.target.value.trim();
