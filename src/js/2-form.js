@@ -14,7 +14,7 @@ saveInputFields();
 
 function onFormSubmit(event) {
   event.preventDefault();
-  if (formData.email === '' || formData.message === '') {
+  if (input.value.trim() === '' || textarea.value.trim() === '') {
     alert('Fill please all fields');
     return;
   }
@@ -31,7 +31,9 @@ function saveInputFields() {
   if (!messageText) return;
   const parsedMessageText = JSON.parse(messageText);
   input.value = parsedMessageText.email;
+  formData.email = parsedMessageText.email;
   textarea.value = parsedMessageText.message;
+  formData.message = parsedMessageText.message;
 }
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', onFormInput);
