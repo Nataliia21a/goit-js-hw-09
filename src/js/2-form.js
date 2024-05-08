@@ -23,15 +23,15 @@ function onFormSubmit(event) {
   event.currentTarget.reset();
 }
 function onFormInput(event) {
-  event.preventDefault();
-  localStorage.setItem(FEEDBACK_STORAGE_KEY, event.target.value);
   formData[event.target.name] = event.target.value.trim();
+  localStorage.setItem(FEEDBACK_STORAGE_KEY, JSON.stringify(formData));
 }
 function saveInputFields() {
   const messageText = localStorage.getItem(FEEDBACK_STORAGE_KEY);
   if (!messageText) return;
-  input.value = messageText;
-  textarea.value = messageText;
+  const parsedMessageText = JSON.parse(messageText);
+  input.value = parsedMessageText.email;
+  textarea.value = parsedMessageText.message;
 }
 form.addEventListener('submit', onFormSubmit);
 form.addEventListener('input', onFormInput);
